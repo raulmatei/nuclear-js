@@ -14,7 +14,7 @@ const identity = (x) => x
  * @param {*} toTest
  * @return {boolean}
  */
-function isGetter(toTest) {
+export function isGetter(toTest) {
   return (isArray(toTest) && isFunction(toTest[toTest.length - 1]))
 }
 
@@ -23,7 +23,7 @@ function isGetter(toTest) {
  * @param {Getter} getter
  * @return {function}
  */
-function getComputeFn(getter) {
+export function getComputeFn(getter) {
   return getter[getter.length - 1]
 }
 
@@ -32,7 +32,7 @@ function getComputeFn(getter) {
  * @param {Getter} getter
  * @return {function}
  */
-function getDeps(getter) {
+export function getDeps(getter) {
   return getter.slice(0, getter.length - 1)
 }
 
@@ -42,7 +42,7 @@ function getDeps(getter) {
  * @param {Immutable.Set} existing
  * @return {Immutable.Set}
  */
-function getFlattenedDeps(getter, existing) {
+export function getFlattenedDeps(getter, existing) {
   if (!existing) {
     existing = Immutable.Set()
   }
@@ -70,7 +70,7 @@ function getFlattenedDeps(getter, existing) {
  * @param {KeyPath}
  * @return {Getter}
  */
-function fromKeyPath(keyPath) {
+export function fromKeyPath(keyPath) {
   if (!isKeyPath(keyPath)) {
     throw new Error('Cannot create Getter from KeyPath: ' + keyPath)
   }
@@ -82,7 +82,7 @@ function fromKeyPath(keyPath) {
  * Adds non enumerated __storeDeps property
  * @param {Getter}
  */
-function getStoreDeps(getter) {
+export function getStoreDeps(getter) {
   if (getter.hasOwnProperty('__storeDeps')) {
     return getter.__storeDeps
   }
