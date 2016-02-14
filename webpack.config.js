@@ -8,6 +8,15 @@ var genFilename = function(isMin) {
   ].join('')
 }
 
+var immutableJS = {
+  immutable: {
+    root: 'Immutable',
+    commonjs2: 'immutable',
+    commonjs: 'immutable',
+    amd: 'immutable',
+  }
+}
+
 var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin()
 
 module.exports = [
@@ -23,6 +32,9 @@ module.exports = [
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       ],
     },
+    externals: [
+      immutableJS
+    ],
   },
   {
     entry: './src/main.js',
@@ -36,6 +48,9 @@ module.exports = [
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       ],
     },
+    externals: [
+      immutableJS
+    ],
     plugins: [uglifyJsPlugin],
   },
 ]
